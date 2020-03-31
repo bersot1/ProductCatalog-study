@@ -6,55 +6,79 @@ using System.Threading.Tasks;
 using ProductCatalog.Data;
 using ProductCatalog.Models;
 using Microsoft.EntityFrameworkCore;
+using ProductCatalog.ViewModels;
+using ProductCatalog.ViewModels.ProductViewModels;
+using ProductCatalog.ViewModels.CategoryViewModels;
+using ProductCatalog.Repositories;
 
 namespace ProductCatalog.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly StoreDataContext _context;
+        private readonly CategoryRepository _repository;
 
-        public CategoryController(StoreDataContext context)
+        public CategoryController(CategoryRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         [Route("v1/categories")]
         [HttpGet]
-        public IEnumerable<Category> Get()
+        public IEnumerable<ListCategoryViewModel> GetAll()
         {
-            return _context.Categories.AsNoTracking().ToList();
+            return _repository.GetAll();
         }
 
         [Route("v1/categories/{id}")]
         [HttpGet]
         public Category GetById(Guid id)
         {
-            return _context.Categories.AsNoTracking().Where(x => x.Id == id).FirstOrDefault();
+            return _repository.GetById(id);
         }
 
         [Route("v1/categories/{id}/products")]
         [HttpGet]
         public IEnumerable<Product> GetAllProductsByCategory(Guid id)
         {
-            return _context.Products.AsNoTracking().Where(x => x.Category.Id == id).ToList();
+            return _repository.GetAllProductsByCategory(id);
         }
 
         [Route("v1/categories")]
         [HttpPost]
-        public Category Post([FromBody]Category category)
+        public ResultViewModel Post([FromBody]CreateCategoryViewModel model)
         {
-            _context.Categories.Add(category);
-            _context.SaveChanges();
+            model.Validate();
+            if (model.Invalid)
+            {
+                return new ResultViewModel
+                {
+                    Sucess = false,
+                    Message = "Não foi possivel cadastrar a categoria",
+                    Data = model.Notifications
+                };
+            }
 
-            return category;
+
+            var category = new Category();
+            category.Title = model.Title;
+
+            _repository.Post(category);
+
+            return new ResultViewModel
+            {
+                Sucess = true,
+                Message = "Categoria criada com sucesso",
+                Data = category
+            };
+
+            
         }
 
         [Route("v1/categories")]
         [HttpPut]
         public Category Put([FromBody]Category category)
         {
-            _context.Entry<Category>(category).State = EntityState.Modified;
-            _context.SaveChanges();
+            _repository.Put(category);
 
             return category;
         }
@@ -64,8 +88,7 @@ namespace ProductCatalog.Controllers
         [HttpDelete]
         public Category Delete([FromBody]Category category)
         {
-            _context.Categories.Remove(category);
-            _context.SaveChanges();
+            _repository.Delete(category);
 
             return category;
         }

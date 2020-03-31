@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProductCatalog.Data;
 using ProductCatalog.Data.Maps;
+using ProductCatalog.Repositories;
 
 namespace ProductCatalog
 {
@@ -19,7 +20,9 @@ namespace ProductCatalog
         {
             services.AddMvc(option => option.EnableEndpointRouting = false);
             services.AddScoped<StoreDataContext, StoreDataContext>();
-            
+            services.AddTransient<CategoryRepository, CategoryRepository>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

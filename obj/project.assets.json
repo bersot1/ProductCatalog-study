@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
+      "Flunt/1.0.4": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Flunt.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Flunt.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Antiforgery/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -495,7 +504,7 @@
           "buildMultiTargeting/Microsoft.AspNetCore.Razor.Design.props": {}
         }
       },
-      "Microsoft.AspNetCore.Razor.Language/2.2.0": {
+      "Microsoft.AspNetCore.Razor.Language/3.1.3": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/Microsoft.AspNetCore.Razor.Language.dll": {}
@@ -2956,6 +2965,18 @@
     }
   },
   "libraries": {
+    "Flunt/1.0.4": {
+      "sha512": "zsKA3Wol1+UeQBYtXuO56+ua6DBUpD5dcp3iAa86W5WcMLOWBMaDXKdqIrrLNgQUOW/U/svecb4ldgqwnC9XDQ==",
+      "type": "package",
+      "path": "flunt/1.0.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "flunt.1.0.4.nupkg.sha512",
+        "flunt.nuspec",
+        "lib/netstandard2.0/Flunt.dll"
+      ]
+    },
     "Microsoft.AspNetCore.Antiforgery/2.2.0": {
       "sha512": "fVQsSXNZz38Ysx8iKwwqfOLHhLrAeKEMBS5Ia3Lh7BJjOC2vPV28/yk08AovOMsB3SNQPGnE7bv+lsIBTmAkvw==",
       "type": "package",
@@ -3426,18 +3447,17 @@
         "tools/rzc.runtimeconfig.json"
       ]
     },
-    "Microsoft.AspNetCore.Razor.Language/2.2.0": {
-      "sha512": "IeyzVFXZdpUAnWKWoNYE0SsP1Eu7JLjZaC94jaI1VfGtK57QykROz/iGMc8D0VcqC8i02qYTPQN/wPKm6PfidA==",
+    "Microsoft.AspNetCore.Razor.Language/3.1.3": {
+      "sha512": "ppyl8fVmL9NRGmmzWHoxzf2OSQ+6bPjubMR0W4uzzpdF488o3YB81a1zzHbbEK1ZjgZelhIBghR6y7nUD/kd3Q==",
       "type": "package",
-      "path": "microsoft.aspnetcore.razor.language/2.2.0",
+      "path": "microsoft.aspnetcore.razor.language/3.1.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "lib/net46/Microsoft.AspNetCore.Razor.Language.dll",
-        "lib/net46/Microsoft.AspNetCore.Razor.Language.xml",
+        "Icon.png",
         "lib/netstandard2.0/Microsoft.AspNetCore.Razor.Language.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Razor.Language.xml",
-        "microsoft.aspnetcore.razor.language.2.2.0.nupkg.sha512",
+        "microsoft.aspnetcore.razor.language.3.1.3.nupkg.sha512",
         "microsoft.aspnetcore.razor.language.nuspec"
       ]
     },
@@ -9103,8 +9123,10 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "Flunt >= 1.0.4",
       "Microsoft.AspNetCore.Mvc >= 2.2.0",
       "Microsoft.AspNetCore.Mvc.Core >= 2.2.5",
+      "Microsoft.AspNetCore.Razor.Language >= 3.1.3",
       "Microsoft.EntityFrameworkCore >= 3.1.3",
       "Microsoft.EntityFrameworkCore.Design >= 3.1.3",
       "Microsoft.EntityFrameworkCore.SqlServer >= 3.1.3"
@@ -9116,11 +9138,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Projeto\\backend\\ProductCatalog\\ProductCatalog.csproj",
+      "projectUniqueName": "C:\\Projeto\\backend\\ProductCatalog-study\\ProductCatalog.csproj",
       "projectName": "ProductCatalog",
-      "projectPath": "c:\\Projeto\\backend\\ProductCatalog\\ProductCatalog.csproj",
+      "projectPath": "C:\\Projeto\\backend\\ProductCatalog-study\\ProductCatalog.csproj",
       "packagesPath": "C:\\Users\\bersot\\.nuget\\packages\\",
-      "outputPath": "c:\\Projeto\\backend\\ProductCatalog\\obj\\",
+      "outputPath": "C:\\Projeto\\backend\\ProductCatalog-study\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\bersot\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -9147,6 +9169,10 @@
     "frameworks": {
       "netcoreapp3.1": {
         "dependencies": {
+          "Flunt": {
+            "target": "Package",
+            "version": "[1.0.4, )"
+          },
           "Microsoft.AspNetCore.Mvc": {
             "target": "Package",
             "version": "[2.2.0, )"
@@ -9154,6 +9180,10 @@
           "Microsoft.AspNetCore.Mvc.Core": {
             "target": "Package",
             "version": "[2.2.5, )"
+          },
+          "Microsoft.AspNetCore.Razor.Language": {
+            "target": "Package",
+            "version": "[3.1.3, )"
           },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
